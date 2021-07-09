@@ -1,73 +1,27 @@
-import React from "react";
-import Star from "../star/star";
+import React, {useState} from 'react';
+import Star from './star/star';
+import s from './raiting.module.css';
 
-type RaitingPropsType = {
-    value: 0 | 1 | 2 | 3 | 4 | 5;
-}
+const {raiting} = s;
 
-function Rating(props: RaitingPropsType) {
-    console.log('rating rendering');
-    if (props.value === 1) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 2) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 3) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 4) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={false}/>
-            </div>
-        )
-    } else if (props.value === 5) {
-        return (
-            <div>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-                <Star selected={true}/>
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-                <Star selected={false}/>
-            </div>
-        )
-    }
+
+function Rating() {
+    const [value, setValue] = useState(0);
+
+    return (
+        <div className={raiting}>
+            <Star setValue={()=>setValue(1)} selected={value > 0}/>
+
+            <Star setValue={()=>setValue(2)} selected={value > 1}/>
+
+            <Star setValue={()=>setValue(3)} selected={value > 2}/>
+
+            <Star setValue={()=>setValue(4)} selected={value > 3}/>
+
+            <Star setValue={()=>setValue(5)} selected={value > 4}/>
+
+        </div>
+    )
 }
 
 export default Rating;

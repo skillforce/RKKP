@@ -1,0 +1,18 @@
+.App{
+    width:600px;
+    margin: 20px auto;
+}
+
+
+.raiting{
+
+    border: 2px solid aquamarine ;
+    background-color: #31c5ff;
+    padding: 15px;
+    text-align: center;
+    box-shadow:0 15px 15px cornflowerblue;
+    width:250px;
+    margin-left: 12%;
+
+}
+

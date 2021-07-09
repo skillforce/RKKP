@@ -1,35 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import Accordion from "./components/accordion/accordion";
-import Rating from "./components/raiting/raiting";
-import {PageTitle} from "./components/tittle/tittle";
+import Accordion from './components/accordion/accordion';
+import Rating from './components/raiting/raiting';
+import {Switcher} from './components/OnOf/OnOf';
+import NewAccordion from './components/conAcc/newacc';
+import ConRating from './components/conRaiting/conRaiting';
+import {SwitcherC} from './components/OnOfContr/OnOfC';
 
+export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
 
-function sum(a: number, b: number) {
-    alert(a + b);
-}
-
-// sum(5,10);
-
-
-//function declaration
 const App = () => {
-    console.log('App rendering');
+    let [ratingValue, setRatingValue] = useState<RatingValueType>(0);
+    let [accColl, setAccColl] = useState<boolean>(false);
+    let [on, setOn]=useState<boolean>(false);
     return (
-        <div>
-            <PageTitle tittle={'This is App component'}/>
-            <PageTitle tittle={'My Friends'}/>
-            Article 1
-            <Rating value={5}/>
-            <Accordion collapsed={true} titleValue={'Menu'}/>
-            <Accordion collapsed={false} titleValue={'User'}/>
-            Article 2
-            <Rating value={0}/>
-            <Rating value={1}/>
-            <Rating value={2}/>
-            <Rating value={3}/>
-            <Rating value={4}/>
-            <Rating value={5}/>
+        <div className={'App'}>
+            <NewAccordion titleValue={'Denis'}/>
+            <div className="raiting">
+                <h2>Your mark?</h2>
+                <Rating/>
+            </div>
+            <div className="raiting">
+                <h2>Your mark?</h2>
+                <ConRating setRatingValue={setRatingValue} ratingValue={ratingValue}/>
+            </div>
+            <Switcher/>
+            <SwitcherC on={on} setOn={setOn} />
+            <Accordion titleValue={'Denis'} collapsed={accColl} setAccColl={setAccColl}/>{on.toString()}
         </div>
     );
 }

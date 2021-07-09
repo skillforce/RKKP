@@ -1,36 +1,34 @@
-import React from "react";
+import React from 'react';
+import s from './accordion.module.css';
 
 type AccordionPropsType = {
     titleValue: string;
-    collapsed: true | false;
-}
-
-function Accordion(props: AccordionPropsType) {
-    console.log('Accordion rendering');
-    if (props.collapsed === true) {
-        return (
-            <div>
-                <AccordionTittle title={props.titleValue}/>
-                <AccordionBody/>
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                <AccordionTittle title={props.titleValue}/>
-            </div>
-        )
-    }
+    collapsed: boolean;
+    setAccColl:(x:boolean)=>void;
 }
 
 type AccordionTittlePropsType = {
     title: string;
+    setAccColl:(x:boolean)=>void;
+    collapsed:boolean
+}
+
+
+function Accordion(props: AccordionPropsType) {
+    const {collapsed,setAccColl} = props;
+    const{acc} =s;
+    return (<div className={acc}>
+        <AccordionTittle collapsed={collapsed} setAccColl={setAccColl} title={props.titleValue}/>
+        {!collapsed && <AccordionBody/>}
+    </div>)
 }
 
 
 function AccordionTittle(props: AccordionTittlePropsType) {
-    console.log('AccordionTittle rendered');
-    return <h3>--{props.title}--</h3>
+    const{setAccColl, collapsed}=props;
+    const{acc_title}=s;
+    return <h3 className={acc_title} onClick={()=>{setAccColl(!collapsed)}
+    }>--{props.title}--</h3>
 }
 
 
